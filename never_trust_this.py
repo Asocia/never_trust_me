@@ -1,4 +1,5 @@
 from operator import xor
+
 try:
     import pyperclip
 except ImportError:
@@ -62,6 +63,7 @@ def get_prompts():
         print(prmpts['lang_set_to'])
     finally:
         return prmpts
+
 
 class VerySecureCipherApp():
     def __init__(self):
