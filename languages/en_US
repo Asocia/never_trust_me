@@ -1,0 +1,19 @@
+primary_lang_info:We detect your language as English. To continue in English press [Enter], press [L] to switch Turkish.
+secondary_lang_info:Bölge ayarlarınızdan dilinizin İnglizce olduğunu belirledik. Programa İngilizce devam etmek istiyorsanız [Enter]'a, Türkçe'ye geçmek için [L]'ye basın >> 
+lang_set_to:The language is set to English.
+choice_dialog:Press [0] for encryption, [1] for decryption ([q] for quit) >> 
+choice_encrypt_text:ENCRYPTION
+choice_decrypt_text:DECRYPTION
+get_text_dialog:The text that you want to encrypt >> 
+get_cipher_dialog:The cipher that you want to decrypt >> 
+encrypting_msg:Encrypting the text 
+decrypting_msg:Decrypting the cipher 
+encrypted_msg:Cipher >> 
+decrypted_msg:Incoming message: 
+decryption_successful:Decryption succesfull.
+copied_to_clipboard:Cipher is copied to clipboard succesfully.
+paste_from_clipboard:You can use Ctrl+{}V combination to paste from clipboard.
+failed_encryption:Oops! We couldn't process your request :(
+failed_decryption:Oops! Somethings went wrong. We are afraid that the cipher is too complex for us to decrypt.
+exit:Quitting...
+unknown_op:Unknown operation, please try again.

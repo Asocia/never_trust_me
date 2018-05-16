@@ -1,0 +1,19 @@
+primary_lang_info:Bölge ayarlarınızdan dilinizin Türkçe olduğunu belirledik. Programa Türkçe devam etmek istiyorsanız [Enter]'a, İngilizce'ye geçmek için [L]'ye basın.
+secondary_lang_info:We detect your language as Turkish. To continue in Turkish press [Enter], press [L] to switch English >> 
+lang_set_to:Dil Türkçe olarak ayarlandı!
+choice_dialog:Şifreleme yapmak için [0], çözmek için [1] e basınız (çıkmak için [q]) >> 
+choice_encrypt_text:ŞİFRELEME
+choice_decrypt_text:ŞİFRE ÇÖZME
+get_text_dialog:Şifrelemek istediğiniz metin >> 
+get_cipher_dialog:Şifresini çözmek istediğiniz metin >> 
+encrypting_msg:Metin şifreleniyor 
+decrypting_msg:Çözümleme yapılıyor 
+encrypted_msg:Şifrelenmiş metin >> 
+decrypted_msg:Gelen mesaj: 
+decryption_successful:Metin çözümleme başarılı.
+copied_to_clipboard:Metin panoya başarıyla kopyalandı!
+paste_from_clipboard:Panodaki metni yapıştırmak için Ctrl+{}V tuş kombinasyonunu kullanabilirsiniz.
+failed_encryption:Hay aksi! İşleminizi tamamlayamadık :( 
+failed_decryption:Hay aksi! Bir şeyler ters gitti. Korkarız bu metin çözümlenemeyecek kadar karmaşık!
+exit:Çıkılıyor...
+unknown_op:Tanımsız işlem, yeniden deneyin.
