@@ -1,14 +1,12 @@
 from operator import xor
+from typing import Any, Union
 
 try:
     import pyperclip
-
-    pyperclip_imported = True
 except ImportError:
-    pyperclip_imported = False
     pyperclip = None
 
-from random import randint, shuffle, choice
+from random import randint, shuffle
 import sys
 import os
 from time import sleep
@@ -53,12 +51,12 @@ def get_prompts():
             prmpts = open_lang_file(language)
             print(prmpts['lang_set_to'])
     except FileNotFoundError:
-        q = input(
+        select_lang_q = input(
             "We don't have support for your language. "
             "Please choose a language: [1] for English, [2] for Turkish >> ")
-        while q not in ('1', '2'):
-            q = input("Unknown command. Please press [1] or [2] >> ")
-        if q == '1':
+        while select_lang_q not in ('1', '2'):
+            select_lang_q = input("Unknown command. Please press [1] or [2] >> ")
+        if select_lang_q == '1':
             language = "en_US"
         else:
             language = "tr_TR"
@@ -66,7 +64,6 @@ def get_prompts():
         print(prmpts['lang_set_to'])
     finally:
         return prmpts
-
 
 class VerySecureCipherApp():
     def __init__(self):
@@ -103,12 +100,12 @@ class VerySecureCipherApp():
     def encrypt(self, text, key):
         self.new_char_arrangement()
         text = self.replace_unknown_chars(text, '?')
-        key = self.replace_unknown_chars(key,'φ')
+        key = self.replace_unknown_chars(key, 'φ')
         # print("text:", text)
         key = self.stretch(key, len(text))
         # print("key_str", key)
         encrypted_text = self.xorr(text, key)
-        encrypted_text = self.shift('rigth', encrypted_text)
+        encrypted_text = self.shift('right', encrypted_text)
         cipher = "".join(self.char_arrangement[:4]) + encrypted_text + "".join(
             self.char_arrangement[4:])
         return cipher
@@ -135,11 +132,11 @@ class VerySecureCipherApp():
     def xorr(self, string, key):
         r = ''
         for i in range(len(string)):
-            letter_num = self.get_index(string[i])
+            string_index = self.get_index(string[i])
             # print('letter num:',letter_num)
-            key_num = self.get_index(key[i])
+            key_index = self.get_index(key[i])
             # print('key num:',key_num)
-            xor_value = xor(letter_num, key_num)
+            xor_value = xor(string_index, key_index)
             # print('xor value:',xor_value)
             r += self.get_char(xor_value)
             # print('r:', r)
@@ -147,14 +144,14 @@ class VerySecureCipherApp():
 
     def shift(self, direction, string):
         r = ''
-        if direction == 'rigth':
+        if direction == 'right':
             for i in range(len(string)):
                 r += self.get_char((self.get_index(string[i]) + i) % len(self.characters))
         elif direction == 'left':
             for i in range(len(string)):
                 r += self.get_char((self.get_index(string[i]) - i) % len(self.characters))
         else:
-            raise Exception('Direction value either should be [left] or [right] not [{}].'.format(direction))
+            raise Exception("Direction value either should be 'left' or 'right' not '{}'.".format(direction))
         return r
 
     def get_index(self, char):
@@ -183,7 +180,7 @@ if __name__ == '__main__':
                 spin(26, 0.10)
                 sleep(0.5)
                 print("\n" + prompts['encrypted_msg'], cipher)
-                if pyperclip_imported:
+                if pyperclip is not None:
                     try:
                         pyperclip.copy(cipher)
                         sleep(1)
@@ -197,8 +194,7 @@ if __name__ == '__main__':
                     "\n" + prompts['failed_encryption'])
                 sleep(1.5)
                 # print(e)
-            finally:
-                print("-" * 70)
+            print("-" * 70)
         elif q == "1":
             sleep(0.25)
             print("\n-" + "-" * 28 + prompts['choice_decrypt_text'] + "-" * 28 + "-\n")
@@ -220,11 +216,10 @@ if __name__ == '__main__':
                 print("\n" + prompts['failed_decryption'])
                 sleep(1.5)
                 # print(e)
-            finally:
-                print("-" * 70)
-                sleep(1.5)
+            print("-" * 70)
+            sleep(1.5)
         elif q == 'q':
-            if not pyperclip_imported:
+            if pyperclip is None:
                 print(prompts['install_pyperclip'])
             print("\n" + prompts['exit'])
             sleep(2)
