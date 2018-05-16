@@ -82,6 +82,7 @@ class VerySecureCipherApp():
         self.new_char_arrangement()
 
     def new_char_arrangement(self):
+        self.char_arrangement = list(self.character_groups.keys())
         shuffle(self.char_arrangement)
         self.arrange_characters()
 
@@ -193,7 +194,7 @@ if __name__ == '__main__':
                 print(
                     "\n" + prompts['failed_encryption'])
                 sleep(1.5)
-                # print(e)
+                print(e)
             print("-" * 70)
         elif q == "1":
             sleep(0.25)
