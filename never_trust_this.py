@@ -1,6 +1,4 @@
 from operator import xor
-from typing import Any, Union
-
 try:
     import pyperclip
 except ImportError:
