@@ -5,6 +5,7 @@ choice_dialog:Press [0] for encryption, [1] for decryption ([q] for quit) >>
 choice_encrypt_text:ENCRYPTION
 choice_decrypt_text:DECRYPTION
 get_text_dialog:The text that you want to encrypt >> 
+get_key_dialog:The key value for the decryption >> 
 get_cipher_dialog:The cipher that you want to decrypt >> 
 encrypting_msg:Encrypting the text 
 decrypting_msg:Decrypting the cipher 

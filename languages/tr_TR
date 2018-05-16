@@ -5,6 +5,7 @@ choice_dialog:Şifreleme yapmak için [0], çözmek için [1] e basınız (çık
 choice_encrypt_text:ŞİFRELEME
 choice_decrypt_text:ŞİFRE ÇÖZME
 get_text_dialog:Şifrelemek istediğiniz metin >> 
+get_key_dialog:Anahtar >> 
 get_cipher_dialog:Şifresini çözmek istediğiniz metin >> 
 encrypting_msg:Metin şifreleniyor 
 decrypting_msg:Çözümleme yapılıyor 

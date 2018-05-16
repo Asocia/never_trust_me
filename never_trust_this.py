@@ -100,30 +100,24 @@ class VerySecureCipherApp():
             r += self.character_table[self.get_char(randint(min_char, max_char))]
         return r
 
-    def encrypt(self, text):
+    def encrypt(self, text, key):
         self.new_char_arrangement()
         text = self.replace_unknown_chars(text, '?')
+        key = self.replace_unknown_chars(key,'φ')
         # print("text:", text)
-        key_group = choice(self.char_arrangement)
-        key_length = randint(4, 9)
-        key = self.character_groups[key_group][:key_length]
-        # print("key_group: {}, key_length: {}, key: {}".format(key_group,key_length,key))
         key = self.stretch(key, len(text))
         # print("key_str", key)
         encrypted_text = self.xorr(text, key)
         encrypted_text = self.shift('rigth', encrypted_text)
-        cipher = key_group + encrypted_text + "".join(self.char_arrangement[:4]) + str(key_length) + "".join(
+        cipher = "".join(self.char_arrangement[:4]) + encrypted_text + "".join(
             self.char_arrangement[4:])
         return cipher
 
-    def decrypt(self, cipher):
-        self.char_arrangement = list(cipher[-9:-5] + cipher[-4:])
+    def decrypt(self, cipher, key):
+        self.char_arrangement = list(cipher[:4] + cipher[-4:])
         self.arrange_characters()
-        key_group = cipher[0]
-        key_length = int(cipher[-5])
-        key = self.character_groups[key_group][:key_length]
         key = self.stretch(key, len(cipher))
-        encrypted_text = cipher[1:-9]
+        encrypted_text = cipher[4:-4]
         encrypted_text = self.shift('left', encrypted_text)
         text = self.xorr(encrypted_text, key)
         return text
@@ -182,8 +176,9 @@ if __name__ == '__main__':
             sleep(0.25)
             print("\n-" + "-" * 29 + prompts['choice_encrypt_text'] + "-" * 29 + "-\n")
             message = input(prompts['get_text_dialog'])
+            key_ = input(prompts['get_key_dialog'])
             try:
-                cipher = encoder.encrypt(message)
+                cipher = encoder.encrypt(message, key_)
                 print("\n" + prompts['encrypting_msg'], end="")
                 spin(26, 0.10)
                 sleep(0.5)
@@ -209,11 +204,12 @@ if __name__ == '__main__':
             print("\n-" + "-" * 28 + prompts['choice_decrypt_text'] + "-" * 28 + "-\n")
             print(prompts['paste_from_clipboard'].format("Shift+" if os.name == 'posix' else "") + "\n")
             cipher = input(prompts['get_cipher_dialog'])
+            key_ = input(prompts['get_key_dialog'])
             sleep(0.75)
             print("\n" + prompts['decrypting_msg'], end="")
             spin(26, 0.10)
             try:
-                message = prompts['decrypted_msg'] + encoder.decrypt(cipher) + "\n"
+                message = prompts['decrypted_msg'] + encoder.decrypt(cipher, key_) + "\n"
                 sleep(0.75)
                 print("\n" + prompts['decryption_successful'])
                 sleep(0.75)
