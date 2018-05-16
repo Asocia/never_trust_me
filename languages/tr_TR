@@ -17,3 +17,5 @@ failed_encryption:Hay aksi! İşleminizi tamamlayamadık :(
 failed_decryption:Hay aksi! Bir şeyler ters gitti. Korkarız bu metin çözümlenemeyecek kadar karmaşık!
 exit:Çıkılıyor...
 unknown_op:Tanımsız işlem, yeniden deneyin.
+pyperclip_copy:Şifrelenmiş metni kopyalama işleminde başarısız olduk. Ancak yine de elle kopyalayabilirsiniz. Eğer elle kopyalamak istemiyorsanız,  'sudo apt install xsel; reboot' komutunu deneyebilirsiniz.
+install_pyperclip:It seems that you didn't install pyperclip module. For a better experience next time, you may want to install it with 'pip3 install pyperclip' command or 'pip3 install -r requirements.txt' command from the same directory that you run the program. You can also run the program from virtual environment without installing anything.

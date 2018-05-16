@@ -2,10 +2,12 @@ from operator import xor
 
 try:
     import pyperclip
+
+    pyperclip_imported = True
 except ImportError:
-    pyperclip_imported=False
-else:
-    pyperclip_imported=True
+    pyperclip_imported = False
+    pyperclip = None
+
 from random import randint, shuffle, choice
 import sys
 import os
@@ -33,7 +35,7 @@ def spin(a, b):
 def open_lang_file(lang):
     prompts_ = dict()
     path = os.sep.join(('languages', lang))
-    with open(path, 'r',encoding='utf8') as f:
+    with open(path, 'r', encoding='utf8') as f:
         for line in f.readlines():
             name, description = line.split(':', 1)
             prompts_[name] = description[:-1]  # Ignore '\n' character.
@@ -44,7 +46,7 @@ def get_prompts():
     try:
         language = locale.getdefaultlocale()[0]
         prmpts = open_lang_file(language)
-        print(prmpts['primary_lang_info'] + "\n"+ prmpts['secondary_lang_info'], end='')
+        print(prmpts['primary_lang_info'] + "\n" + prmpts['secondary_lang_info'], end='')
         change_language_query = input()
         if change_language_query in ('l', 'L'):
             language = 'en_US' if language != 'en_US' else 'tr_TR'
@@ -187,9 +189,13 @@ if __name__ == '__main__':
                 sleep(0.5)
                 print("\n" + prompts['encrypted_msg'], cipher)
                 if pyperclip_imported:
-                    pyperclip.copy(cipher)
-                    sleep(1)
-                    print("\n" + prompts['copied_to_clipboard'] + "\n")
+                    try:
+                        pyperclip.copy(cipher)
+                        sleep(1)
+                        print("\n" + prompts['copied_to_clipboard'] + "\n")
+                    except:
+                        if os.name == 'posix':
+                            print(prompts['pyperclip_err'])
             except Exception as e:
                 sleep(1.5)
                 print(
@@ -222,6 +228,8 @@ if __name__ == '__main__':
                 print("-" * 70)
                 sleep(1.5)
         elif q == 'q':
+            if not pyperclip_imported:
+                print(prompts['install_pyperclip'])
             print("\n" + prompts['exit'])
             sleep(2)
             exit()

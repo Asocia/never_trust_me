@@ -17,3 +17,5 @@ failed_encryption:Oops! We couldn't process your request :(
 failed_decryption:Oops! Somethings went wrong. We are afraid that the cipher is too complex for us to decrypt.
 exit:Quitting...
 unknown_op:Unknown operation, please try again.
+pyperclip_copy:We have been failed during copying the cipher process. However, you can still copy it by manually. If you don't want to copy it manually, you may want to run 'sudo apt install xsel; reboot' command.
+install_pyperclip:It seems that you didn't install pyperclip module. For a better experience next time, you may want to install it with 'pip3 install pyperclip' command or 'pip3 install -r requirements.txt' command from the same directory that you run the program. You can also run the program from virtual environment without installing anything.
