@@ -1,5 +1,11 @@
 from operator import xor
-import pyperclip
+
+try:
+    import pyperclip
+except ImportError:
+    pyperclip_imported=False
+else:
+    pyperclip_imported=True
 from random import randint, shuffle, choice
 import sys
 import os
@@ -27,7 +33,7 @@ def spin(a, b):
 def open_lang_file(lang):
     prompts_ = dict()
     path = os.sep.join(('languages', lang))
-    with open(path, 'r') as f:
+    with open(path, 'r',encoding='utf8') as f:
         for line in f.readlines():
             name, description = line.split(':', 1)
             prompts_[name] = description[:-1]  # Ignore '\n' character.
@@ -38,7 +44,7 @@ def get_prompts():
     try:
         language = locale.getdefaultlocale()[0]
         prmpts = open_lang_file(language)
-        print(prmpts['primary_lang_info'] + prmpts['secondary_lang_info'], end='')
+        print(prmpts['primary_lang_info'] + "\n"+ prmpts['secondary_lang_info'], end='')
         change_language_query = input()
         if change_language_query in ('l', 'L'):
             language = 'en_US' if language != 'en_US' else 'tr_TR'
@@ -180,9 +186,10 @@ if __name__ == '__main__':
                 spin(26, 0.10)
                 sleep(0.5)
                 print("\n" + prompts['encrypted_msg'], cipher)
-                pyperclip.copy(cipher)
-                sleep(1)
-                print("\n" + prompts['copied_to_clipboard'] + "\n")
+                if pyperclip_imported:
+                    pyperclip.copy(cipher)
+                    sleep(1)
+                    print("\n" + prompts['copied_to_clipboard'] + "\n")
             except Exception as e:
                 sleep(1.5)
                 print(
@@ -200,7 +207,6 @@ if __name__ == '__main__':
             print("\n" + prompts['decrypting_msg'], end="")
             spin(26, 0.10)
             try:
-                control_variable = cipher[10]
                 message = prompts['decrypted_msg'] + encoder.decrypt(cipher) + "\n"
                 sleep(0.75)
                 print("\n" + prompts['decryption_successful'])
