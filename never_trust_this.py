@@ -35,7 +35,8 @@ def open_lang_file(lang):
     with open(path, 'r', encoding='utf8') as f:
         for line in f.readlines():
             name, description = line.split(':', 1)
-            prompts_[name] = description[:-1]  # Ignore '\n' character.
+            description = textwrap.fill(description,110)
+            prompts_[name] = description + " "
     return prompts_
 
 
@@ -181,20 +182,20 @@ if __name__ == '__main__':
                 spin(26, 0.10)
                 sleep(0.5)
                 print("\n" + prompts['encrypted_msg'], cipher)
-                if pyperclip is not None:
-                    try:
-                        pyperclip.copy(cipher)
-                        sleep(1)
-                        print("\n" + prompts['copied_to_clipboard'] + "\n")
-                    except:
-                        if os.name == 'posix':
-                            print(prompts['pyperclip_err'])
             except Exception as e:
                 sleep(1.5)
                 print(
                     "\n" + prompts['failed_encryption'])
                 sleep(1.5)
                 print(e)
+            if pyperclip is not None:
+                try:
+                    pyperclip.copy(cipher)
+                    sleep(1)
+                    print("\n" + prompts['copied_to_clipboard'] + "\n")
+                except:
+                    if os.name == 'posix':
+                        print(prompts['pyperclip_err'])
             print("-" * 70)
         elif q == "1":
             sleep(0.25)
