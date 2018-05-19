@@ -34,11 +34,11 @@ python3 main.py
 ## How it works
 
 On the encryption part the program takes two inputs from user. 
-A text to encrypt and a key for encrypting the text. If length of the key is less than length of the text, 
+A text to encrypt and a key for encrypting the text. If length of the key is less than the length of the text, 
 it adds the key to itself until it reaches the length of the text (i.e. abcabcabca). 
 Then performs an xor operation to text and key's corresponding character as every character has a numeric value. 
 Converts the resulting numbers to characters.
-As a last step, it rotates rigth each character by its index. 
+As a last step, it rotates right each character by its index. 
 
 Decryption part is straightforward. Just does the same things in reverse order. 
 Rotates left each character by its index then performs an xor operation.
