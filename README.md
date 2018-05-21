@@ -10,14 +10,14 @@ This is really simple encryption program designed for fun in 72 hours. Think twi
 
 ## Install requirements
 
-This program tested on Python 3.x and is not yet fully compatible with Python 2.x. You can still try to run it on Python 2, but it is not recommended.
+This program tested on Python 3.x and is not yet fully compatible with Python 2.x. You can still try to run it on Python 2, but it is not guaranteed to work.
 
 You can install the python dependencies with:
 
 ```sh
 pip3 install -r requirements.txt
 ```
-NOTE: If you are on Linux and see that the program doesn't handle the copying operation properly, you may want to run the following commands:
+NOTE: If you are using Ubuntu based distribution and see that the program doesn't handle the copying operation properly, you may want to run the following commands:
 
 ```sh
 sudo apt install xsel
@@ -25,7 +25,7 @@ reboot
 ```
 
 ## How to use
-Open a new terminal and change directory to  "never_trust_me" and run the main file with following command:
+Open a new terminal and change directory to  "never_trust_me" then run the main file with following command:
 
 ```sh
 python3 main.py
